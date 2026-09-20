@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ramirez Home Services — Licensed & Insured Local Repair</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  AE9 LABS — LOCAL SERVICE BUSINESS TEMPLATE
+  ============================================
+  Built for: contractors, repair techs, salons, cleaners, and other
+  local/home-service businesses that book jobs by phone or form.
+
+  BUYER SETUP — fields to swap, all editable from your Airtable base
+  the same way your other AE9 templates work:
+    - business_name        (header, hero, footer)
+    - tagline               (hero subhead)
+    - phone_number          (header CTA, hero, footer, contact section)
+    - service_area_list     (Service Area section)
+    - services[] (name, one-line description, icon letter)
+    - trust_bullets[]       (Why Us section)
+    - testimonials[] (quote, name, neighborhood)
+    - hours, license_number, insured_bool (footer)
+    - photo placeholders: swap any ".photo-block" div's background
+      for a real <img> once you have job-site photos.
+
+  Fonts: Big Shoulders Display (headline) + Inter (body) — loaded
+  from Google Fonts below. Swap in brand fonts if the buyer has them.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2EFE6;
+    --bg-alt:#E9E2CE;
+    --panel:#FFFFFF;
+    --ink:#1E2A22;
+    --ink-soft:#4B5A4F;
+    --ink-faint:#7C8878;
+    --accent:#B5502E;
+    --accent-dark:#8F3E22;
+    --olive:#6E7C4E;
+    --line:#D9D2BE;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+
+  a{ color:inherit; }
+
+  .headline, h1, h2, h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.98;
+    color:var(--ink);
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    border-bottom:1px solid var(--line);
+    background:var(--panel);
+  }
+
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 0;
+    max-width:1120px;
+    margin:0 auto;
+    padding-left:28px;
+    padding-right:28px;
+  }
+
+  .logo{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:24px;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+
+  .logo span{ color:var(--accent); }
+
+  .call-btn{
+    background:var(--accent);
+    color:#fff;
+    font-weight:600;
+    font-size:15px;
+    padding:12px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:64px 0 56px;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.2fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+
+  @media (max-width:800px){
+    .hero-grid{ grid-template-columns:1fr; }
+  }
+
+  .hero h1{
+    font-size:clamp(38px, 6vw, 62px);
+    margin-bottom:20px;
+  }
+
+  .hero h1 .rule{
+    color:var(--accent);
+  }
+
+  .hero p.sub{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:28px;
+  }
+
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+    font-weight:600;
+    font-size:15px;
+    padding:15px 26px;
+    border-radius:3px;
+    text-decoration:none;
+  }
+
+  .btn-secondary{
+    border:1.5px solid var(--ink);
+    color:var(--ink);
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:3px;
+    text-decoration:none;
+  }
+
+  .trust-row{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-size:14px;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+
+  .trust-row span{
+    display:flex;
+    align-items:center;
+    gap:7px;
+  }
+
+  .dot{
+    width:6px; height:6px;
+    background:var(--olive);
+    border-radius:50%;
+    flex-shrink:0;
+  }
+
+  .photo-block{
+    aspect-ratio:4/5;
+    border-radius:4px;
+    background:
+      repeating-linear-gradient(135deg, rgba(30,42,34,0.06) 0 2px, transparent 2px 14px),
+      linear-gradient(160deg, #DCD4B8, #B9AF8C);
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    padding:18px;
+  }
+
+  .photo-block span{
+    background:rgba(30,42,34,0.78);
+    color:#fff;
+    font-size:12px;
+    font-weight:600;
+    padding:6px 10px;
+    border-radius:3px;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- Services ---------- */
+  .services{
+    padding:64px 0;
+    background:var(--bg-alt);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+
+  .section-label{
+    font-size:13px;
+    font-weight:600;
+    color:var(--accent-dark);
+    margin-bottom:10px;
+  }
+
+  .services h2{
+    font-size:clamp(28px, 3.6vw, 38px);
+    margin-bottom:36px;
+    max-width:20ch;
+  }
+
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+
+  @media (max-width:760px){
+    .service-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:520px){
+    .service-grid{ grid-template-columns:1fr; }
+  }
+
+  .service-card{
+    background:var(--panel);
+    padding:28px 24px;
+  }
+
+  .service-icon{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:var(--ink);
+    color:#fff;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:16px;
+    font-size:16px;
+  }
+
+  .service-card h3{
+    font-size:19px;
+    text-transform:none;
+    margin-bottom:8px;
+  }
+
+  .service-card p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- Why us ---------- */
+  .why{
+    padding:72px 0;
+  }
+
+  .why-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+
+  @media (max-width:800px){
+    .why-grid{ grid-template-columns:1fr; }
+  }
+
+  .why h2{
+    font-size:clamp(28px, 3.6vw, 38px);
+    margin-bottom:18px;
+  }
+
+  .why > .why-grid > div:last-child p.lead{
+    color:var(--ink-soft);
+    margin-bottom:24px;
+    max-width:52ch;
+  }
+
+  .bullet-list{ list-style:none; }
+
+  .bullet-list li{
+    display:flex;
+    gap:14px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+    font-size:15.5px;
+  }
+
+  .bullet-list li:first-child{ border-top:none; }
+
+  .check{
+    flex-shrink:0;
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--olive);
+    color:#fff;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-top:1px;
+  }
+
+  /* ---------- Service area ---------- */
+  .area{
+    background:var(--ink);
+    color:#F2EFE6;
+    padding:52px 0;
+  }
+
+  .area-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+
+  .area h3{
+    color:#fff;
+    font-size:26px;
+    max-width:16ch;
+  }
+
+  .area-list{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 16px;
+    max-width:520px;
+  }
+
+  .area-list span{
+    font-size:14px;
+    color:#D3CDB7;
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{
+    padding:72px 0;
+  }
+
+  .testimonials h2{
+    font-size:clamp(28px, 3.6vw, 38px);
+    margin-bottom:36px;
+  }
+
+  .t-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+
+  @media (max-width:800px){
+    .t-grid{ grid-template-columns:1fr; }
+  }
+
+  .t-card{
+    border-left:3px solid var(--accent);
+    padding:4px 0 4px 22px;
+  }
+
+  .t-card p.quote{
+    font-size:15.5px;
+    color:var(--ink);
+    margin-bottom:14px;
+  }
+
+  .t-card p.attr{
+    font-size:13.5px;
+    color:var(--ink-faint);
+    font-weight:600;
+  }
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:var(--accent);
+    color:#fff;
+    padding:56px 0;
+    text-align:center;
+  }
+
+  .cta-banner h2{
+    color:#fff;
+    font-size:clamp(28px, 4vw, 40px);
+    margin-bottom:14px;
+  }
+
+  .cta-banner p{
+    color:#F6E4DC;
+    margin-bottom:26px;
+    font-size:16px;
+  }
+
+  .btn-white{
+    background:#fff;
+    color:var(--accent-dark);
+    font-weight:700;
+    font-size:15.5px;
+    padding:16px 30px;
+    border-radius:3px;
+    text-decoration:none;
+    display:inline-block;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:44px 0 36px;
+    border-top:1px solid var(--line);
+  }
+
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+    font-size:13.5px;
+    color:var(--ink-faint);
+  }
+
+  .footer-grid strong{ color:var(--ink); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Ramirez <span>Home Services</span></div>
+    <a class="call-btn" href="tel:+15551234567">Call (555) 123-4567</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Fixed right.<br>Fixed <span class="rule">fast.</span></h1>
+      <p class="sub">Licensed, insured home repair and maintenance serving the greater Cottonwood area. Same-week appointments, upfront pricing, no surprise callbacks.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#quote">Get a free quote</a>
+        <a class="btn-secondary" href="tel:+15551234567">Call now</a>
+      </div>
+      <div class="trust-row">
+        <span><span class="dot"></span>Licensed &amp; insured</span>
+        <span><span class="dot"></span>14 years in business</span>
+        <span><span class="dot"></span>4.9★ from 200+ jobs</span>
+      </div>
+    </div>
+    <div class="photo-block"><span>Swap for a real job photo</span></div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="wrap">
+    <div class="section-label">What we do</div>
+    <h2>One call covers most of what breaks around the house.</h2>
+    <div class="service-grid">
+      <div class="service-card">
+        <div class="service-icon">P</div>
+        <h3>Plumbing repair</h3>
+        <p>Leaks, clogs, water heaters, and fixture swaps — diagnosed and fixed in one visit when possible.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">E</div>
+        <h3>Electrical work</h3>
+        <p>Outlets, panels, lighting, and safety inspections handled by a licensed electrician.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">H</div>
+        <h3>HVAC service</h3>
+        <p>Seasonal tune-ups, repairs, and honest advice on repair-vs-replace.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">C</div>
+        <h3>General carpentry</h3>
+        <p>Doors, trim, drywall patching, and small framing jobs done clean.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">R</div>
+        <h3>Roof &amp; gutter</h3>
+        <p>Leak repair, gutter clearing, and pre-storm inspections.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">M</div>
+        <h3>Maintenance plans</h3>
+        <p>A standing seasonal checklist so small problems don't become big ones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap why-grid">
+    <div class="photo-block"><span>Swap for a team photo</span></div>
+    <div>
+      <div class="section-label">Why homeowners call us back</div>
+      <h2>We show up, we quote it straight, and we clean up after.</h2>
+      <p class="lead">No subcontractor roulette — the person who quotes the job is the person who shows up to do it.</p>
+      <ul class="bullet-list">
+        <li><span class="check">✓</span>Upfront, written pricing before any work starts</li>
+        <li><span class="check">✓</span>Same crew from quote to completion</li>
+        <li><span class="check">✓</span>Text updates so you're not guessing on arrival time</li>
+        <li><span class="check">✓</span>90-day workmanship guarantee on every job</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="area">
+  <div class="wrap area-inner">
+    <h3>Proudly serving the Verde Valley</h3>
+    <div class="area-list">
+      <span>Cottonwood</span>
+      <span>Sedona</span>
+      <span>Camp Verde</span>
+      <span>Clarkdale</span>
+      <span>Jerome</span>
+      <span>Village of Oak Creek</span>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <h2>What the neighborhood says</h2>
+    <div class="t-grid">
+      <div class="t-card">
+        <p class="quote">Quoted the water heater job over the phone and the price didn't move an inch once they were here. Rare these days.</p>
+        <p class="attr">— Dana M., Cottonwood</p>
+      </div>
+      <div class="t-card">
+        <p class="quote">Showed up same day for an outlet that was sparking. Explained exactly what was wrong before touching anything.</p>
+        <p class="attr">— Ray T., Camp Verde</p>
+      </div>
+      <div class="t-card">
+        <p class="quote">Been on their seasonal plan for two years — small stuff gets caught before it turns into a real bill.</p>
+        <p class="attr">— Priya S., Sedona</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner" id="quote">
+  <div class="wrap">
+    <h2>Something need fixing?</h2>
+    <p>Free, no-pressure quotes. Most calls get a same-week appointment.</p>
+    <a class="btn-white" href="tel:+15551234567">Call (555) 123-4567</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div><strong>Ramirez Home Services</strong> · Licensed &amp; insured · Lic. #ROC-000000</div>
+    <div>Mon–Sat, 7am–6pm · Serving the Verde Valley, AZ</div>
+    <div>© 2026 Ramirez Home Services</div>
+  </div>
+</footer>
+
+</body>
+</html>
